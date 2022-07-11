@@ -1,0 +1,111 @@
+https://forums.developer.nvidia.com/t/void-d-why-two/12609/9
+Hi,
+
+I am trying to understand why we have two * in cudaMalloc(), such as (void**)&a_d. Some pointers are here http://forums.nvidia.com/index.php?showtop…rt=#entry563409
+but I don’t know why I am unable to understand it :-).
+
+I would be highly obliged of you if you could elaborate it further.
+
+Thanks
+“void*” is a pointer to something. But cudaMalloc() needs to modify the given pointer (the pointer itself not what the pointer points to), so you need to pass “void**” which is a pointer to the pointer (usually a pointer to the local variable that points to the memory address) such that cudaMalloc() can modify the value of the pointer. Hope this was clear… and not confusing you more :blink:
+
+A related question… why do we have to cast to void**? If cudaMalloc is defined to accept a void**, then why isn’t ‘&d_ptr’ sufficient? I ask because statements like that give gcc’s warning mechanisms conniptions.
+
+And when can we have cudaNew and cudaDelete? :)
+Kiran_CUDA
+Oct 07 '09
+
+    “void*” is a pointer to something. But cudaMalloc() needs to modify the given pointer (the pointer itself not what the pointer points to), so you need to pass “void**” which is a pointer to the pointer (usually a pointer to the local variable that points to the memory address) such that cudaMalloc() can modify the value of the pointer. Hope this was clear… and not confusing you more :blink:
+
+Thanks for your reply. Can you tell me why does the cudaMalloc() need to modify the given pointer?
+_teju
+Oct 07 '09
+
+This is a standard problem in C. :) Let us say that I write a wrapper function over ‘malloc’
+
+// This will not work!!!
+
+void myMalloc(void* ptr, int size) {
+
+  ptr = malloc(size);
+
+  return;
+
+}
+
+Now, if you try to call this function for allocating memory, and then try accessing it, you’ll generally get segmentation fault!!!
+
+int* ptr = NULL;
+
+myMalloc((void*) ptr, size);
+
+ptr[0] = 0;		// generally causes SEGMENTATION FAULT
+
+The reason being the 10th grade funda of ‘passing by reference’ and ‘passing by value’. :)
+
+If you consider ‘ptr’ to be a variable (forget that it’s a pointer for the time being), you are just passing it by value. Hence, any changes made in teh function will not get reflected in the calling function. So, the correct way would be to:
+
+// This will work
+
+void myMalloc(void** ptr, int size) {
+
+  *ptr = malloc(size);
+
+  return;
+
+}
+
+int* ptr = NULL;
+
+myMalloc((void**) &ptr, size);
+
+ptr[0] = 0;
+
+Again, since you never know what kind of pointers one would be using in his/her program, you always pass it as ‘void**’ :)
+Gregory_Diamos
+Oct 09 '09
+
+If this was c++, you could do cudaError_t cudaMalloc( void*&, size_t ) instead of this and it might make more sense to people…
+_teju
+Oct 09 '09
+
+Of course, “it were c++”. :)
+However, all tesla family of cards (geforce, gtx) doesn’t support C++ code. But I sincerely hope that this should get changed in fermi family, as it can support c++ as well… :rolleyes:
+seibert
+Oct 09 '09
+
+    Of course, “it were c++”. :)
+
+    However, all tesla family of cards (geforce, gtx) doesn’t support C++ code. But I sincerely hope that this should get changed in fermi family, as it can support c++ as well… :rolleyes:
+
+cudaMalloc() runs on the host and is compiled by gcc (not nvcc), so this is a non-sequitur. :)
+
+Really, I imagine the goal here was to target the lowest common denominator, so you could write your host code in C (or anything that knows how to call C functions).
+Gregory_Diamos
+Oct 09 '09
+
+    Really, I imagine the goal here was to target the lowest common denominator, so you could write your host code in C (or anything that knows how to call C functions).
+
+I see the reasoning in the beginning to support only C, but now CUDA supports many C++ features including classes and templates. It seems like they could support both via something like this :
+
+cudaError_t cudaMalloc( void**, size_t );
+
+#ifdef __cplusplus
+
+template<class T>
+
+cudaError_t cudaMalloc( T*& ptr, size_t bytes )
+
+{
+
+  return cudaMalloc( (void**) &ptr, bytes );
+
+}
+
+#endif
+
+_teju
+Oct 10 '09
+
+Oopss… I missed the fact that cudaMalloc is executed by host :">
+Your argument for c++ support sounds perfect reasonable. I was wrong with my argument…
