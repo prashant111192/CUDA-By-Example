@@ -49,10 +49,11 @@ int main(void)
     // std::cout<< "max Grid size "<< prop.maxGridSize[1]<< std::endl;
     // std::cout<<"count is: "<<count<<std::endl;
     int c;
+    int N=1000000;
     int *dev_c;
-    HANDLE_ERROR(cudaMalloc((void **)&dev_c, sizeof(int)));
-    add<<<1, 1>>>(2, 7, dev_c);
-    HANDLE_ERROR(cudaMemcpy(&c, dev_c, sizeof(int), cudaMemcpyDeviceToHost));
+    HANDLE_ERROR(cudaMalloc((void **)&dev_c, N*sizeof(int)));
+    add<<<N, 1>>>(2, 7, dev_c);
+    HANDLE_ERROR(cudaMemcpy(&c, dev_c, N*sizeof(int), cudaMemcpyDeviceToHost));
     printf("2 + 7 = %d\n", c);
     cudaFree(dev_c);
     return 0;
