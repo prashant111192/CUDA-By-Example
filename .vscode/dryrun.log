@@ -1,0 +1,21 @@
+make -f /home/prashant/Documents/github/Semi-Independent-ADM/src/Makefile --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/prashant/Documents/github/CUDA-By-Example'
+make: Leaving directory '/home/prashant/Documents/github/CUDA-By-Example'
+ 
+make: *** No rule to make target 'kernel.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'KDTree.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'nearestneighbours.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'inOut.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admParameter.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'particle.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartInit.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartOutput.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartReactionRate.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartAcidBaseNR.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartGas.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPartConc.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'admPart.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'readXML.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'tinyxml2.o', needed by '../bin/debug/ADM_test.out'.
+make: *** No rule to make target 'main.o', needed by '../bin/debug/ADM_test.out'.
+
