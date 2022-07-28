@@ -8,7 +8,7 @@ make: *** No rule to make target 'kernel.o', needed by '../bin/debug/ADM_test.ou
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 26 11:25:11 2022
+# Make data base, printed on Thu Jul 28 10:46:30 2022
 
 # Variables
 
@@ -129,7 +129,7 @@ USE_FAST_MATH = YES
 # environment
 XDG_SESSION_DESKTOP = i3
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-ojl6CxJoQSSC/agent.1708
+SSH_AUTH_SOCK = /tmp/ssh-oIbKVTqbdxum/agent.1675
 # automatic
 %F = $(notdir $%)
 # environment
@@ -143,7 +143,7 @@ PWD = /home/prashant/Documents/github/CUDA-By-Example
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1768
+SSH_AGENT_PID = 1735
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = i3
 # environment
@@ -213,11 +213,11 @@ XDG_CURRENT_DESKTOP = i3
 # environment
 LC_TELEPHONE = de_AT.UTF-8
 # environment
-I3SOCK = /run/user/1000/i3/ipc-socket.1708
+I3SOCK = /run/user/1000/i3/ipc-socket.1675
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/prashant/Documents/github
+OLDPWD = /home/prashant
 # default
 .VARIABLES := 
 # makefile (from '/home/prashant/Documents/github/Semi-Independent-ADM/src/Makefile', line 7)
@@ -259,13 +259,13 @@ LC_ALL = C
 # makefile (from '/home/prashant/Documents/github/Semi-Independent-ADM/src/Makefile', line 12)
 JLIBS = ${LIBS_DIRECTORIES}
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/92c6259c_5646_4bc0_bda1_98c49f21e87c
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/93632e4a_e562_43f7_972f_1a50a1ff9d9d
 # automatic
 ^F = $(notdir $^)
 # makefile (from '/home/prashant/Documents/github/Semi-Independent-ADM/src/Makefile', line 5)
 USE_DEBUG = YES
 # environment
-GNOME_TERMINAL_SERVICE = :1.59
+GNOME_TERMINAL_SERVICE = :1.26
 # default
 SUFFIXES := 
 # environment
@@ -288,10 +288,10 @@ LC_ADDRESS = de_AT.UTF-8
 LANG = C
 # environment
 TERM = xterm-256color
-# environment
-VSCODE_PID = 55669
-# variable set hash-table stats:
  
+# environment
+VSCODE_PID = 2908
+# variable set hash-table stats:
 # Load=139/1024=14%, Rehash=0, Collisions=29/178=16%
 
 # Pattern-specific Variable Values
@@ -462,6 +462,6 @@ main.o:
 # strcache performance: lookups = 34 / hit rate = 26%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=0/34=0%
-# Finished Make data base on Tue Jul 26 11:25:11 2022
+# Finished Make data base on Thu Jul 28 10:46:30 2022
 
  
